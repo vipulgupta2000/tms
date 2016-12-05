@@ -1,0 +1,126 @@
+ <div>
+ <center><font size="+2" color="blue">	Update Time Sheet</font></center>
+</div>
+		
+
+		<?php
+		$pageid=isset($_GET['id'])?$_GET['id'] : 0;
+		if($pageid!=0){
+		$result = mysql_query("SELECT * FROM timetable WHERE taskid ='$pageid'  ");
+
+
+
+ 
+?>
+ <table border="1" width="1000">
+
+		<th>EMPID</th><th>Name</th><th>CHARGECODE</th><th>PROJECT</th><th>TASK</th><th>Date</th><th>status</th>
+		<th>SAT<br/></th>
+		<th>SUN<br/></th>
+		<th>MON<br/></th>
+		<th>TUE<br/></th>
+		<th>WED<br/></th>
+		<th>THU<br/></th>
+		<th>FRI<br/></th><th>TOTAL</th>
+		<tr>
+		<?php
+$i=0;
+$tot=0;
+$tsaturday =0;
+$tsunday   =0;
+$tmonday   =0;
+$ttuesday  =0;
+$twednesday=0;
+$tthursday =0;
+$tfriday   =0;
+
+
+while($row = mysql_fetch_array($result))
+{
+
+
+echo "<tr>";
+// To Calculate the Total of Row.
+$sumrow=$row['saturday']+$row['sunday']+$row['monday']+$row['tuesday']+$row['wednesday']+$row['thursday']+$row['friday'];
+$tot=$tot+$sumrow;
+
+// To Calculate the Total of Column.
+$tsaturday  = $tsaturday  +$row['saturday'];
+$tsunday    = $tsunday    +$row['sunday'];
+$tmonday    = $tmonday    +$row['monday'];
+$ttuesday   = $ttuesday   +$row['tuesday'];
+$twednesday = $twednesday +$row['wednesday'];
+$tthursday  = $tthursday  +$row['thursday'];
+$tfriday    = $tfriday    +$row['friday'];
+$emp=$row['empid'];
+echo "<td>" .$row['empid']	     . "</td>"  ;
+echo "<td>" .$row['empname']	 . "</td>"  ;
+echo "<td>" .$row['chargecode']	 . "</td>"  ;
+echo "<td>" .$row['project'] 	 . "</td>"  ;
+echo "<td>" .$row['task']	     . "</td>"  ;
+$da=$row['datevar'];
+echo "<td>" .   $da      	 . "</td>"  ;
+echo "<td>" .$row['status']	     . "</td>"  ;
+echo "<td><input type=text name=sat size=\"2\"  value=\"{$row['saturday']}\"	     ></td>"  ;
+		echo "<td><input type=text name=sun size=\"2\"  value=\"{$row['sunday']}\"	 	 ></td>"  ;
+		echo "<td><input type=text name=mon size=\"2\"  value=\"{$row['monday']}\"	 	 ></td>"  ;
+		echo "<td><input type=text name=tue size=\"2\"  value=\"{$row['tuesday']}\"	     ></td>"  ;
+		echo "<td><input type=text name=wed size=\"2\"  value=\"{$row['wednesday']}\"		 ></td>"  ;
+		echo "<td><input type=text name=thr size=\"2\"  value=\"{$row['thursday']}\"	     ></td>"  ;
+		echo "<td><input type=text name=fri size=\"2\"  value=\"{$row['friday']}\"	 	 ></td>"  ;
+echo "<td class=\"tot\">$sumrow</td>";
+
+echo "</tr>";
+
+echo "<tr> <td colspan=\"7\" class=\"tot\">Total</td> <td class=\"tot\">$tsaturday</td> <td class=\"tot\">$tsunday</td> <td class=\"tot\">$tmonday </td> <td class=\"tot\">$ttuesday</td> <td class=\"tot\">$twednesday</td> <td class=\"tot\">$tthursday</td> <td class=\"tot\">$tfriday </td> <td class=\"tot\"> $tot</td> </tr>";
+echo "</table>";
+
+		echo "<br/>";
+		
+		echo "<input id=\"btn\" type=\"submit\" name=\"ats\" value=\"Update\">";
+
+		
+		
+		
+	}/*End of if sts*/
+
+		if(isset($_POST['ats']))
+		{echo $_POST['fri'];
+		$sql = "UPDATE timetable SET status='',tmp=1,saturday='$_POST[sat]',sunday='$_POST[sun]',monday='$_POST[mon]',tuesday='$_POST[tue]',wednesday='$_POST[wed]',thursday='$_POST[thr]',friday='$_POST[fri]' where taskid='$pageid'";
+		echo $sql;
+		/*taskid='$_POST[temp3]'*/
+		if(!mysql_query($sql,$con))
+		{
+		die('Could not update the status:' . mysql_error());
+		}
+		
+				$temp = mysql_query("select email_id,empname from usertable where empid='$_SESSION[SESS_mgrid]'");
+				$row2 = mysql_fetch_array($temp);
+		
+				$to = $row2['email_id'];
+				/*$to = "nadeem.ansari@inputzero.com";*/
+				$subj = "$_SESSION[SESS_ename] has updated the timesheet";
+				$headers = 'From: noreply@inputzero.com';
+				$txt = "Hi $row2[empname],"."\n"."\n".
+		$val4=$row['datevar'];
+				"User $_SESSION[SESS_ename] has updated timesheet for the weekend ".$val4."."."\n".
+				"This is a system generated mail. Please do not respond.\n\nThanks,\nnoreply@inputzero.com";
+		
+				// Use wordwrap() if lines are longer than 70 characters
+				$txt = wordwrap($txt,100);
+		
+				// Send email
+				$true = mail($to, $subj, $txt, $headers);
+		
+				if($true==1)
+				{
+				echo "Notification Mail Sent";
+				echo "<meta http-equiv='refresh' content='0;url=home.php?page=update2'>";
+				}
+				else {echo "Unable to Send Notification Mail";}
+		
+		}/*End of Mail Part*/
+echo "<p><a href=\"javascript:history.go(-1)\"><big> Back</big></a></p>";
+
+}
+?>

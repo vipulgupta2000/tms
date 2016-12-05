@@ -1,0 +1,31 @@
+ <div>
+ <center><font size="+2" color="blue">	Update Time Sheet</font></center>
+</div>
+
+<?php
+
+$tbl="timetable";
+
+echo "Qual:<input type=\"text\" name=\"qual\" value=\"\" />";
+
+$qual=isset($_POST['qual'])?$_POST['qual']:"empid='$_SESSION[SESS_empid]' and status!='approved' ";
+
+
+$field_edit=array('date');
+$field_show=array('empid','empname','project','date','taskid','status');
+$link="home.php?page=updatets&id=";
+
+if(isset($_POST['modify']) || isset($_POST['update']))
+{
+echo input($tbl,$qual,$field_edit,$field_show,$link);
+
+}else
+{
+//$qual="status='draft' ORDER BY time DESC";
+echo display_link($tbl,$qual,1,$field_show,$link);
+//addrow($tbl);
+}
+
+
+
+?>

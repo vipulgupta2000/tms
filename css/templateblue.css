@@ -1,0 +1,198 @@
+body{
+padding:0;
+margin:0;
+}
+
+#box
+{
+/*border: 1px solid grey;*/
+width:auto;
+height:850px;
+padding:0;
+margin:0;
+}
+
+#top
+{
+background:url('../images/top.png') repeat-x left top;
+height:80px;
+border-bottom:1px solid grey;
+width:auto;
+}
+
+#top_left
+{
+float:left;
+width:300px;
+height:45px;
+padding:1px 40px 0 40px;
+margin:10px 20px;
+}
+
+#top_middle
+{
+font-size:22pt;
+float:left;
+width:600px;
+height:50px;
+margin:0 30px;
+padding:20px;
+color:#ffffff;
+font-weight:bold;
+}
+
+#top_right
+{
+float:left;
+width:auto;
+/*height:50px;*/
+margin-top:60px;
+margin-right:40px;
+}
+
+#middle
+{
+height:551px;
+/*width:900px;*/
+}
+
+#middle_left
+{
+float:left;
+width:240px;
+height:527px;
+background:transparent url('../images/mid_lmid.png') center center repeat-y;
+margin:12px 0px;
+padding:0px;
+text-align:left;
+}
+#mid_ltop{
+background:transparent url('../images/mid_ltop.png') top left no-repeat;
+}
+#mid_lbot{
+background:transparent url('../images/mid_lbot.png') bottom left no-repeat;
+}
+
+
+
+#middle_right
+{
+width:auto;
+/*background:#ffffff;*/
+height:551px;
+/*overflow-x:scroll;*/
+}
+.content
+{
+padding:5px;
+background:#E8E8E8;
+align:left;
+}
+#middle_right_top
+{
+/*width:826px;*/
+height:20px;
+margin: 0px;
+background:#000000;
+}
+
+h2      
+{
+
+font-size: 20px;
+font-family:Times New Roman;
+color:#ffffff;
+text-align:left;
+margin: 0px;
+padding:0 10px;
+}
+
+#footer
+{
+border-top:1px solid grey;
+background:transparent url('../images/footer.png') top left repeat-x;
+/*#c9bfbf;*/
+
+}
+
+
+table	
+{
+border-collapse:collapse;
+}
+
+th
+{
+background:#25587E;
+color:#ffffff;
+font:14px TimesNewRoman;
+}
+
+#btn 
+{
+margin:0 0 0 0;
+background-color: blue;
+border-width: 1;
+border-color: black;
+font-family: TimesNewRoman;
+font-size: 16;
+color:white;
+}
+
+#btn:hover
+{background:orange;}
+
+.tot
+{
+background:#D8D8D8;
+}
+
+.ro{background:#A4A4A4;}
+
+#img
+{
+width:125px; 
+height:45px;
+}
+.clr{
+clear:both;
+}
+
+ul{
+list-style:none;
+margin:0 5px;
+padding:0;
+}
+
+li{
+margin:2px 0;
+padding:0;
+/*width:220px;
+height:30px;*/
+}
+
+
+li a
+{
+width:220px;
+height:30px;
+color:#000000;
+font-family:Arial Helvetica Sans-Serif;
+font-size:11pt;
+padding:5px 0 0 5px;
+margin:0 5px 0 0;
+text-align:left;
+display: block;
+}
+
+li a:hover
+{
+background:transparent url('../images/but.png') top left repeat-x;
+color:#ffffff;
+
+}
+
+a
+{
+text-decoration:none;
+} 

@@ -31,6 +31,27 @@ return date("Y-n-j", mktime(0, 0, 0, date("m"), date("d")+$j, date("Y")));
 }
 //echo "<br />Friday's Date is ".friday();
 //echo "<br />";
+function anyfriday($dat)
+{
+//$j=-1;
+
+if ( date("l",setmydate($dat))=="Monday" ){$j=4;}
+
+if ( date("l",setmydate($dat))=="Tuesday" ){$j=3;}
+
+if ( date("l",setmydate($dat))=="Wednesday" ){$j=2;}
+
+if ( date("l",setmydate($dat))=="Thursday" ){$j=1;}
+
+if ( date("l",setmydate($dat))=="Friday" ){$j=0;}
+
+if ( date("l",setmydate($dat))=="Saturday" ){$j=6;}
+
+if ( date("l",setmydate($dat))=="Sunday" ){$j=5;}
+
+return date("Y-n-j", mktime(0, 0, 0, date("m",setmydate($dat)), date("d",setmydate($dat))+$j, date("Y",setmydate($dat))));
+
+}
 
 function ddl()
 {

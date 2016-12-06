@@ -44,12 +44,26 @@ alert("You cant do this");
     });                                  		
 </script>
 
-		<input id="btn" type="submit" onclick="checkme()" name="addrow1" value="Add Row">
+		<?php
+               
+                $jy=isset($_POST['dat'])?$_POST['dat']:"";
+                $dy=anyfriday($jy);
+                 echo "<td><input type=text name=dat id=dat value=\"".$dy."\" readonly=readonly class=ro size=\"10\">";
+		echo "<a href=\"javascript:NewCal('dat','yyyymmdd')\">
+		<img src=datetimepick/cal.gif width=15 height=15 border=0 alt=Pick a date></a></td>";
+               
+                echo '<input id="btn" type="submit" name="opensheet" value="opensheet">';
+		
+                if(isset($_POST['dat']))
+                {
+                //$dy=new DateTime(friday());
+                
+                $dy=new DateTime(anyfriday($_POST['dat']));
+                    ?>
+<input id="btn" type="submit"  name="addrow1" value="Add Row">
 		<input type="hidden" name="row1" size="2" value="1">
 
-		<table border="1" width="750"><?php $dy=new DateTime(friday());
-                ?>
-
+		<table border="1" width="750">
 		<th>CHARGECODE</th><th>PROJECT</th><th>TASK</th>
 		<th>SAT<br/><?php $j=$dy->modify("-6 days");echo $j->format('d-M');?></th>
 		<th>SUN<br/><?php $j=$dy->modify("+1 days");echo $j->format('d-M');?></th>
@@ -60,6 +74,9 @@ alert("You cant do this");
 		<th>FRI<br/><?php $j=$dy->modify("+1 days");echo $j->format('d-M');?></th><th>TOTAL</th>
 		<tr>
 		<?php
+               }
+               
+                
 		if(isset($_POST['addrow1']))
 		{
 		$amount = $_POST['row1'];
@@ -131,12 +148,12 @@ alert("You cant do this");
 
 		if((is_numeric($val3)||empty($val3)) && (is_numeric($val4)||empty($val4)) && (is_numeric($val5)||empty($val5)) && (is_numeric($val6)||empty($val6)) && (is_numeric($val7)||empty($val7)) && (is_numeric($val8)||empty($val8)) && (is_numeric($val9)||empty($val9)))
 		{
-		$date=friday();
-		$ts = new DateTime(friday());
+		$date=anyfriday($jy);
+		$ts = new DateTime(anyfriday($jy));
 		$dint = $ts->format('U');
 
 		$sql = "INSERT INTO timetable (empid,empname,chargecode,monday,tuesday,wednesday,thursday,friday,saturday,sunday,date,project,task,datevar,mgrid) VALUES ('$empval','$_SESSION[SESS_ename]','$val1', '$val3', '$val4', '$val5', '$val6', '$val7', '$val8', '$val9','$dint','$val10','$val11','$date','$_SESSION[SESS_mgrid]')";
-
+echo $sql;
 		if (!mysql_query($sql,$con))
 		{
 		die('Error: ' . mysql_error());
@@ -152,6 +169,7 @@ alert("You cant do this");
 		<?php
 		if(isset($_POST['submit']) && !isset($_POST['ival']))
 		{
+                
 		$j=0;
 		while($j<$_POST['jval'])
 		{
@@ -225,11 +243,15 @@ alert("You cant do this");
 /*End of Mail Part*/
 
 		//$date=friday();
-		$sdat = new DateTime(friday());
-		$da=$sdat->format('U');
-
-		$result = mysql_query("SELECT * FROM timetable where empid='$_SESSION[SESS_empid]' and date='$da'");
-		$j=0;
+                //echo $dy;
+		//$sdat = new DateTime($jy);
+                if(isset($_POST['dat'])){
+		$sdat=new DAteTime(anyfriday($_POST['dat']));
+                $da=$sdat->format('U');
+$origsql="SELECT * FROM timetable where empid='$_SESSION[SESS_empid]' and date='$da'";		
+$result = mysql_query($origsql);
+		
+                $j=0;
 		$tot=0;
 
 		$tsaturday =0;
@@ -298,7 +320,8 @@ alert("You cant do this");
 		}
 		echo "<input type=hidden name=\"jval\" value=$j>";
 		echo "<tr> <td colspan=\"3\" class=\"tot\">Total</td> <td class=\"tot\">$tsaturday</td> <td class=\"tot\">$tsunday</td> <td class=\"tot\">$tmonday </td> <td class=\"tot\">$ttuesday</td> <td class=\"tot\">$twednesday</td> <td class=\"tot\">$tthursday</td> <td class=\"tot\">$tfriday </td> <td class=\"tot\"> $tot</td> </tr>";
-		?>
+               
+                ?>
 		<!--End of Select query-->
 		</table>
 		<br />
@@ -312,6 +335,7 @@ alert("You cant do this");
 		<input id="btn" type="submit" name="mail" value="Submit For The Week"><br/>
 
 		<?php
+                 }
 		if(isset($sql))
 		{
 		echo "Time Sheet Saved";

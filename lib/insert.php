@@ -9,15 +9,16 @@ include('utils.php');
 //include('rowaccess.php');
 
 //DB SQLs
-$tbl=$_GET['page'];
+$tbl=isset($_POST['tbl'])?$_POST['tbl']:$_GET['page'];
 if(isset($_POST['delete']))
 {
 delete($tbl);
 }
 if(isset($_POST['update']))
 {
-update($tbl);
 //echo "<p> records updated </p>";
+update($tbl);
+
 }
 if(isset($_POST['addrow']))
 {

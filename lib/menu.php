@@ -1,21 +1,6 @@
 
 <?php
 $a='';
-echo "<li class=\"dropdown\">";
-echo "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Categories<b class=\"caret\"></b></a>";
-echo "<ul class=\"dropdown-menu\">";
-$sql2="select id,catname from category";
-if(!$result2=mysql_query($sql2))
-{die(mysql_error());
-}else
-{
-while($row2 = mysql_fetch_array($result2))
-{$cond='catid='.$row2['id'];
-echo "<li><a class=\"menu_left\" href=\"home.php?page=search&cond=".urlencode($cond)."\">".$row2['catname']."</a></li>";
-//echo $a;
-}
-echo "</ul></li>";
-}
 
 echo "<li class=\"dropdown\">";
 if($_SESSION['SESS_perm']=='admin')
@@ -53,7 +38,9 @@ echo "</ul></li>";
 echo "<li class=\"dropdown\">";
 echo "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Wiki<b class=\"caret\"></b></a>";
 echo "<ul class=\"dropdown-menu\">";
+//echo "<ul class=\"nav nav-tabs nav-stacked\">";
 echo $a;
+//echo "</ul>";
 echo "</ul></li>";
 ?>
 

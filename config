@@ -1,25 +1,34 @@
-
 <div id="middle_right_top">
 <h2>Enter Time Sheet</h2>
 </div>
 
 <?php
 
-$tbl="timetable";
+$tbl=$_GET['page'];
 //$tbl='appraisal_master';
-$field_edit=array('empid');
-$field_show=array('empid','empname','project');
-$qual="empid='1075'";
-$link="home.php?page=";
-
-//echo "<input type=\"text\" name=\"filter\" placeholder=\"qual\" value=\"\" />";
-
+$field_edit=array('name','alias','tblid','style');
+$field_show=array();
+$qual=NULL;
 if(isset($_POST['modify']) || isset($_POST['update']))
 {
 echo input($tbl,$qual,$field_edit,$field_show);
 }else
 {
-echo display_link($tbl,$qual,1,$field_show,$link);
-//addrow($tbl);
+$k=display($tbl,$qual,1,$field_show);
+echo $k;
+//remhtm($k,$tbl);
+addrow($tbl);
+
+}
+//genscript($tbl);
+
+function genscript($tbl)
+{
+$field_event=array('code');
+$b=display('events',NULL,1,$field_event);
+//echo $b;
+$b=preg_replace('/(<table.*>|<td.*>|<tr.*>|<\/table>|<\/td><\/tr>|<div.*>|<\/div>|<input.*>)/','',$b);
+$b=str_replace('$tbl',$tbl,$b);
+echo "<script>".$b."</script>";
 }
 ?>

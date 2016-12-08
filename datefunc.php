@@ -100,7 +100,7 @@ function eid()
 
 function ename()
 {
- $result = mysql_query("SELECT empname FROM usertable where Status='active'");
+ $result = mysql_query("SELECT empname FROM users where Status='active'");
  while($row=mysql_fetch_array($result))
  {
  echo "<option value=\"{$row[0]}\">{$row[0]}</option>";

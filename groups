@@ -1,0 +1,23 @@
+<div id="middle_right_top">
+<h2>Enter Time Sheet</h2>
+</div>
+
+<?php
+$tbl=$_GET['page'];
+//$tbl='appraisal_master';
+
+$qual_orig=" 1=1";
+$qual=isset($_POST['qual'])?$_POST['qual']." and ".$qual_orig:$qual_orig;
+echo "Qual:<input type=\"text\" name=\"qual\" value=\"$qual\" />";
+$field_edit=array('id','name');
+$field_show=array();
+if(isset($_POST['modify']) || isset($_POST['update']))
+{
+echo input($tbl,$qual,$field_edit,$field_show);
+}else
+{
+echo display($tbl,$qual,1,$field_show);
+addrow($tbl);
+}
+echo "<a href=\"\" >Show All</a>";
+?>

@@ -38,9 +38,10 @@ echo "</ul></li>";
 echo "<li class=\"dropdown\">";
 echo "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Wiki<b class=\"caret\"></b></a>";
 echo "<ul class=\"dropdown-menu\">";
-//echo "<ul class=\"nav nav-tabs nav-stacked\">";
+echo "<ul class=\"nav nav-tabs nav-stacked\">";
 echo $a;
-//echo "</ul>";
-echo "</ul></li>";
+echo "</ul>";
+echo "</ul>";
+echo "</li>";
 ?>
 

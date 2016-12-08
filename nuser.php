@@ -31,7 +31,7 @@ $m1=$n51->format('U');
 
 $bal = $n8 + $n9;
 
-$sql1 = "INSERT INTO usertable (empid,empname,doj,username,password,permission,mgrid) VALUES('$n1','$n2','$m5','$n3','$n4','$n6','$n7')";
+$sql1 = "INSERT INTO users (empid,empname,doj,username,password,permission,mgrid) VALUES('$n1','$n2','$m5','$n3','$n4','$n6','$n7')";
 
 $sql2 = "INSERT INTO balancetable (empid,empname,doj,access,acc_leave,c_leave,e_leave,validity,bal_leave) VALUES('$n1','$n2','$m5','$n6','$bal','$n9','$n8','$m1','$bal')";
 /*

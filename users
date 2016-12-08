@@ -7,8 +7,7 @@ $tbl=$_GET['page'];
 $qual_orig=" 1=1";
 $qual=isset($_POST['qual'])?$_POST['qual']." and ".$qual_orig:$qual_orig;
 echo "Qual:<input type=\"text\" name=\"qual\" value=\"$qual\" />";
-//$tbl='appraisal_master';
-$field_edit=array('tblid','name','alias','size','type','dbindex','dbtype','col','ord','span');
+$field_edit=array('permission','mgrid','email_id','Status');
 $field_show=array();
 //$qual=NULL;
 if(isset($_POST['modify']) || isset($_POST['update']))

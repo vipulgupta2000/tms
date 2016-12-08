@@ -10,10 +10,10 @@ $host="localhost";
 $username="lmsuser";
 $password="v89bXBBYNQCfDDw5";
 $db_name="tms";
-$tbl_name="usertable";
+$tbl_name="users";
 
 // Connect to server and select database.
-mysql_connect("$host", "$username", "$password") or die("cannot connect");
+@mysql_connect("$host", "$username", "$password") or die("cannot connect");
 
 mysql_select_db ("$db_name") or die ("cannot select DB");
 

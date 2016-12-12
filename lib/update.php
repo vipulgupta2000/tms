@@ -121,7 +121,7 @@ function input($tbl,$qual,$arr,$arr_show)
 						$a=$a.$tg_td.$tg_ip.$tg_ip_type.$tg_hidden.$tg_ip_name.$row['name'].$cnt.$tg_ip_size.$row['size'].$tg_ip_value;
 						//$a=$a.$datarow[$row['name']].$tg_ip_cl.$tg_td_cl;
 
-						if($row['type']=="date")
+						if($row['type']=="idate")
 						{
 						$a=$a.getmydate($datarow[$row['name']]).$tg_ip_cl;
 						$a=$a.getmydate($datarow[$row['name']]).$tg_td_cl;
@@ -155,7 +155,7 @@ function input($tbl,$qual,$arr,$arr_show)
 					else
 					{
 						$a=$a.$tg_td.$tg_ip.$tg_ip_type.$row['type'].$tg_ip_name.$row['name'].$cnt.$tg_ip_size.$row['size'].$tg_ip_value;
-							if($row['type']=="date")
+							if($row['type']=="idate")
 							{
 							$a=$a.getmydate($datarow[$row['name']]);
 							$a=$a.$tg_ip_id.$row['name'].$cnt.$tg_class;

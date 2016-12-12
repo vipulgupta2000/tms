@@ -1,0 +1,18 @@
+<div id="middle_right_top">
+<h2>Configure Mails</h2>
+</div>
+
+<?php
+$tbl=$_GET['page'];
+$qual = "1=1";
+$field_edit=array('fromid','fromname','login','password','status');
+$field_show=array();
+if(isset($_POST['modify']) || isset($_POST['update']))
+{
+echo input($tbl,$qual,$field_edit,$field_show);
+}else
+{
+echo display($tbl,$qual,1,$field_show);
+addrow($tbl);
+}
+?>

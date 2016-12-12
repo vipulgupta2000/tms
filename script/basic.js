@@ -1,4 +1,3 @@
-
 function chk(ival)
 {
  var tot=0;
@@ -30,12 +29,15 @@ if(tot==1)
 	}else
 	{return true;}
 }
+
+
 document.getElementById("frm1").onsubmit = function() {
 
 	var par=getUrlParameters("page", "", true);
 alert(par);
 alert("form is submitted");
 }
+
 
 document.getElementById("btn").onclick = function() {
  if(document.getElementById("btn").value=="Update")
@@ -48,7 +50,31 @@ document.getElementById("btn").onclick = function() {
  return false;
  }
 }
+/* if(document.getElementById("btn").value=="Update Payroll")
+{
+	var cout = document.getElementById("count_op").value;
+	alert(cout);
+	var cout1 = document.getElementById("count_cl").value;
+	alert(cout1);
+	if(cout>=1 ){alert("You Can't Open Multiple Payrolls...!!");return false;}
+
+	
+} */
 }
+
+// Start Autopopulated Empid in Paystate
+document.getElementsByName("empid0")[0].onclick = function() {
+var emp = document.getElementById("emp").value;
+document.getElementsByName("empid0")[0].value = emp;
+document.getElementsByName("empid0")[0].readOnly = true;
+}
+// End Autopopulated Empid in Paystate
+
+//Start AutoCalculate Total in Investment Form
+document.getElementsByName("april_amt")[0].onclick = function() {
+
+}
+//End AutoCalculate Total in Investment Form
 
 
 document.getElementById("btn1").onclick = function() {
@@ -78,14 +104,6 @@ if(document.getElementById("btn1").value == "Submit\ for\ rating")
 return true;
 }
 
-document.forms["frm1"].onchange= function(){
-			var j = document.getElementById("user_appraisal").rows.length-1;
-			for(i=0;i<j;i++)
-			{
-			var z=document.forms["frm1"].elements["chb"+i].checked=true;
-			 }
-	}
-
 document.getElementById("btn_del").onclick = function() {
 	 if(document.getElementById("btn_del").value=="Delete")
 	 {
@@ -99,3 +117,5 @@ document.getElementById("btn_del").onclick = function() {
 	 }
 	}
 }
+
+

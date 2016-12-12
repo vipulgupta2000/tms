@@ -1,0 +1,27 @@
+<div id="middle_right_top">
+<h2>Enter Time Sheet</h2>
+</div>
+
+<?php
+echo "Please put the code in following ways"."<br />";
+echo ">Use &lt;script>&lt;/script> tags to cover your scripts where type=others as it will run separately"."<br />";
+echo ">Do not Use &lt;script>&lt;/script> tags and $(document).ready(function(){}); as it will be taken care already";
+echo "by the code";
+$tbl=$_GET['page'];
+$qual_orig=" 1=1";
+$qual=isset($_POST['qual'])?$_POST['qual']." and ".$qual_orig:$qual_orig;
+echo "Qual:<input type=\"text\" name=\"qual\" value=\"$qual\" />";
+
+//$tbl='appraisal_master';
+$field_edit=array('name','type','code','enable');
+$field_show=array();
+$qual=NULL;
+if(isset($_POST['modify']) || isset($_POST['update']))
+{
+echo input($tbl,$qual,$field_edit,$field_show);
+}else
+{
+echo display($tbl,$qual,1,$field_show);
+addrow($tbl);
+}
+?>

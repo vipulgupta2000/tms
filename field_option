@@ -5,7 +5,10 @@
 <?php
 $tbl=$_GET['page'];
 //$tbl='appraisal_master';
-$field_edit=array('groupname','page_name','submit','modify','search');
+$qual_orig=" 1=1";
+$qual=isset($_POST['qual'])?$_POST['qual']." and ".$qual_orig:$qual_orig;
+echo "Qual:<input type=\"text\" name=\"qual\" value=\"$qual\" />";
+$field_edit=array('optid','tblid','fieldid','value','alias');
 $field_show=array();
 $qual=NULL;
 if(isset($_POST['modify']) || isset($_POST['update']))

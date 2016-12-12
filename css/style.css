@@ -1,0 +1,25 @@
+.vakhri{
+float: left;
+list-style: none;
+margin: 0;
+padding: 0;
+width: 191px;
+}
+
+.vakhri li{
+list-style: none;
+padding: 10px;
+background: #F0F0F0;
+border-bottom: #F0F0F0 1px solid;  
+}
+
+.vakhri li:hover{
+    background:#C0C0C0;
+}
+
+
+label{display:inline;margin-bottom:0px;font-weight:bold}
+
+.pagination li a.active {
+    background-color: rgba(168, 173, 175, 0.57);
+}

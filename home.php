@@ -48,7 +48,7 @@
      <ul class="nav navbar-nav">
 			<li><a href="home.php?page=text.php">Home</a></li>
 			<li><a href="logout.php">Logout</a></li>
-			<?php include("lib/menu.php"); ?>
+			<?php //include("lib/menu.php"); ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
 						<div class="row clearfix">
 							<div class="col-md-3 col-xs-12 column well">
 							<?php 	include("lib/menu.php");
-                                                        include("left.php");
+                                                        //include("left.php");
 		include("datefunc.php");
 		//include("lib/utils.php");
 		

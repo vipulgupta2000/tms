@@ -6,22 +6,44 @@ include('display.php');
 include('addrow.php');
 include('update.php');
 include('utils.php');
+include("events.php");
 //include('rowaccess.php');
-
+//include('sms_utils.php');
+$tbl=$_GET['page'];
+//include('testlib.php');
 //DB SQLs
-$tbl=isset($_POST['tbl'])?$_POST['tbl']:$_GET['page'];
+
 if(isset($_POST['delete']))
 {
 delete($tbl);
 }
-if(isset($_POST['update']))
+if(isset($_POST['update']) || isset($_POST['updates']))
 {
-//echo "<p> records updated </p>";
 update($tbl);
-
+//update_single($tbl);
+//echo "<p> Records Updated </p>";
 }
 if(isset($_POST['addrow']))
 {
+if($tbl=='field')
+{
+$sqli=alter();
+echo $sqli;
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
+}
+if($tbl=='config')
+{
+$sqli=createtable();
+echo $sqli;
+if(!mysql_query($sqli))
+	{
+	die.mysql_error();
+	}
+  createid();
+}
 $sqli=insert($tbl);
 //echo $sqli;
 if(!mysql_query($sqli))
@@ -29,6 +51,8 @@ if(!mysql_query($sqli))
 	die.mysql_error();
 	}
 //echo "<p> records inserted </p>";
+//Added newly
+
 }
 if(isset($_POST['create']))
 {

@@ -1,5 +1,31 @@
  <?php
+function mymail($event='approval',$empid,$val4)
+		{
+		$temp = mysql_query("select email_id,empname,mgrid from usertable where empid='$empid'");
+		$row = mysql_fetch_array($temp);
 
+		$to = $row['email_id'];
+		/*$to = "nadeem.ansari@inputzero.com";*/
+		$subj = "$_SESSION[SESS_ename] has ".$event." the timesheet";
+		$headers = 'From: noreply@inputzero.com';
+		$txt = "Hi $row[empname],"."\n"."\n".
+
+		"Your time sheet for the weekend $val4 has been ".strtoupper($event)."\n".
+		"This is a system generated mail. Please do not respond.\n\nThanks,\nnoreply@inputzero.com";
+
+		// Use wordwrap() if lines are longer than 70 characters
+		$txt = wordwrap($txt,100);
+
+		// Send email
+		$true = mail($to, $subj, $txt, $headers);
+
+		if($true==1)
+		{
+		return "Notification Mail Sent".$txt.$to.$subj;
+		}
+		else {return "Unable to Send Notification Mail".$txt.$to.$subj;}
+		}
+		
 function datasearch($search=NULL,$qual)
 {
 $sql_filter="";

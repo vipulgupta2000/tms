@@ -91,7 +91,7 @@ function ccode2()
 
 function eid()
 {
- $result = mysql_query("SELECT empid FROM usertable");
+ $result = mysql_query("SELECT empid FROM users");
  while($row = mysql_fetch_array($result))
  {
  echo "<option value=\"{$row[0]}\">{$row[0]}</option>";
@@ -109,7 +109,7 @@ function ename()
 
 function ename1()
 {
- $result = mysql_query("SELECT empname FROM usertable where mgrid='$_SESSION[SESS_empid]'");
+ $result = mysql_query("SELECT empname FROM users where mgrid='$_SESSION[SESS_empid]'");
  while($row=mysql_fetch_array($result))
  {
  echo "<option value=\"{$row[0]}\">{$row[0]}</option>";

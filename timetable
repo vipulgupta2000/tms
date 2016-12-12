@@ -262,7 +262,7 @@ alert("You cant do this");
 		ccode2();
 		echo "</select></td>";
 
-		echo "<td><select name=\"ddl$j\">";
+		echo "<td><select id=\"proj\" name=\"ddl$j\">";
 		echo "<option value=\"$row[project]\">$row[project]</option>";
 		ddl();
 		echo "</select></td>";
@@ -284,7 +284,7 @@ alert("You cant do this");
 		$read = "";
 		}
 
-		echo "<td> <input type=text $read name=task$j  value=\"$row[task]\"      size=\"20\" >  </td>";
+		echo "<td> <input type=text $read id=\"prj\" name=task$j  value=\"$row[task]\"      size=\"20\" ><div class=\"vakhri\" id=\"livesearch\" style=\"display: none;position: fixed\"></div></td>";
 		echo "<td> <input type=text $read name=sa_tb$j value=\"$row[saturday]\"  size=\"3\" >  </td>";
 		echo "<td> <input type=text $read name=su_tb$j value=\"$row[sunday]\"    size=\"3\" >  </td>";
 		echo "<td> <input type=text $read name=mo_tb$j value=\"$row[monday]\"    size=\"3\" >  </td>";
@@ -298,7 +298,8 @@ alert("You cant do this");
 		}
 		echo "<input type=hidden name=\"jval\" value=$j>";
 		echo "<tr> <td colspan=\"3\" class=\"tot\">Total</td> <td class=\"tot\">$tsaturday</td> <td class=\"tot\">$tsunday</td> <td class=\"tot\">$tmonday </td> <td class=\"tot\">$ttuesday</td> <td class=\"tot\">$twednesday</td> <td class=\"tot\">$tthursday</td> <td class=\"tot\">$tfriday </td> <td class=\"tot\"> $tot</td> </tr>";
-                ?>
+//addrow($tbl);                
+?>
 		<!--End of Select query-->
 		</table>
 		<br />

@@ -151,6 +151,43 @@ function input($tbl,$qual,$arr,$arr_show)
 										}
 										$a=$a.$opt[$j].$tg_sel_cl.$tg_td_cl;
 					$j++;
+					}elseif($row['type']=="list")
+					{
+								$a=$a.$tg_td.$tg_sel.$row['name'].$cnt.$tg_ip_name.$row['name'].$cnt.$tg_cl;
+											//adding new on13/12/2014.can be deleted
+											$sql_filter="select source,filter,id,value,alias from valuelist where id in (select optid from field_option where tblid=".$row['tblid']." and fieldid=".$row['fieldid'].")";
+											//echo $sql_filter;
+											$result_filter=mysql_query($sql_filter);
+											$vsource=mysql_result($result_filter,0,0);
+											$vfilter=mysql_result($result_filter,0,1);
+											$vid=mysql_result($result_filter,0,2);
+											$vvalue=mysql_result($result_filter,0,3);
+											$valias=mysql_result($result_filter,0,4);
+											$vfilter=$vfilter==null?"":" where ".$vfilter;
+											$sql_opt="select ".$vvalue." 'value',".$valias." 'alias' from ".$vsource.$vfilter;
+											//echo $sql_opt;	
+											//Completion of change
+											$result_opt=mysql_query($sql_opt);
+											$opt[$j]="";
+											$alias='';
+											if($result_opt)
+											{
+											while($row_opt = mysql_fetch_array($result_opt))
+												{
+												$opt[$j]=$opt[$j].$tg_opt.$row_opt['value'].$tg_cl.$row_opt['alias'].$tg_opt_cl;
+												if($row_opt['value']==$datarow[$row['name']]) 
+													{$alias=$row_opt['alias'];}
+												}
+											}
+										//}
+										//below handles code if no value is set and also instead of value shows alias
+										$alias=(isset($alias)&&($alias!=null))?$alias:"--clear--";
+										echo "alias is".$alias;
+										$a=$a.$tg_opt.$datarow[$row['name']].$tg_cl.$alias.$tg_opt_cl;
+										//introducing for clear value option
+										$a=$a.$tg_opt."".$tg_cl."--clear--".$tg_opt_cl;
+										$a=$a.$opt[$j].$tg_sel_cl.$tg_td_cl;
+					$j++;
 					}
 					else
 					{

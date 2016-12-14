@@ -55,7 +55,8 @@ return date("Y-n-j", mktime(0, 0, 0, date("m",setmydate($dat)), date("d",setmyda
 
 function ddl()
 {
- $result = mysql_query("SELECT p_name FROM projecttable ");
+    
+ $result = mysql_query("SELECT distinct(project) FROM projecttask where user='$_SESSION[SESS_empid]' ");
  while($row = mysql_fetch_row($result))
  {
  echo "<option value=\"{$row[0]}\">{$row[0]}</option>";

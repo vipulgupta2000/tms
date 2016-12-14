@@ -19,15 +19,15 @@ function getXMLHTTP() { //fuction to return the xml http object
 		return xmlhttp;
     }
 
-	function getcode(chargecode) {
-		var strURL="page2.php?chargecode="+chargecode;
+	function getcode(project,k) {
+		var strURL="page2.php?projcode="+project;
 		var req = getXMLHTTP();
 		if (req) {
 			req.onreadystatechange = function() {
 				if (req.readyState == 4) {
 					// only if "OK"
 					if (req.status == 200) {
-						document.getElementById('projectdiv').innerHTML=req.responseText;
+						document.getElementById('taskdiv'+k).innerHTML=req.responseText;
 					} else {
 						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
 					}

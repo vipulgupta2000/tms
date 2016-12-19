@@ -8,8 +8,9 @@ $qual_orig=" 1=1";
 $qual=isset($_POST['qual'])?$_POST['qual']." and ".$qual_orig:$qual_orig;
 echo "Qual:<input type=\"text\" name=\"qual\" value=\"$qual\" />";
 //$tbl='appraisal_master';
-$field_edit=array('project','task','user');
+$field_edit=array('project','task','user','sdate','edate');
 $field_show=array();
+//$field_show=array('sdate','edate','abc');
 //$qual=NULL;
 if(isset($_POST['modify']) || isset($_POST['update']))
 {

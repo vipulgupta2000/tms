@@ -10,7 +10,7 @@ include("events.php");
 //include('rowaccess.php');
 //include('sms_utils.php');
 $tbl=$_GET['page'];
-//include('testlib.php');
+include('testlib.php');
 //DB SQLs
 
 if(isset($_POST['delete']))

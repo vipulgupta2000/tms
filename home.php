@@ -1,3 +1,6 @@
+<?php
+require_once("auth.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,19 +15,19 @@
 	<!--script src="js/less-1.3.3.min.js"></script-->
 	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
 <link rel="stylesheet" type="text/css" href="css/templateblue.css" />
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="css/style.css" rel="stylesheet"/>
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
   <![endif]-->
 
   <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png"/>
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png"/>
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png"/>
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png"/>
+  <link rel="shortcut icon" href="img/favicon.png"/>
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -32,12 +35,8 @@
 </head>
 
 <body>
-	<?php
-		require_once("auth.php");
-		?>
 <div class="row" id="top">
-	<div class="col-md-3 col-xs-6"><img id="img" src="images/logo.png" alt="Input Zero" />
-	</div>
+	<div class="col-md-3 col-xs-6"><img id="img" src="images/logo.png" alt="Input Zero" /></div>
 	<div class="col-md-7 col-xs-6">
 		<h2>Welcome To Time Management<h2>
 	</div>
@@ -46,9 +45,9 @@
      <div class="navbar-collapse collapse">
      <div class="col-md-10 col-xs-10"> </div>
      <ul class="nav navbar-nav">
+	      
 			<li><a href="home.php?page=text.php">Home</a></li>
 			<li><a href="logout.php">Logout</a></li>
-			<?php //include("lib/menu.php"); ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -78,7 +77,7 @@ jQuery(document).ready(function($) {
 			<div class="col-md-8 col-xs-12 column">
 						<?php
 
-							echo "<form id=\"form1\" name=\"form1\" action=\"\" onsubmit=\"return validateForm1()\" method=\"POST\">";
+							echo "<form role=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" name=\"form1\" id=\"frm1\" action=\"\" method=\"POST\">";
 							//include($_GET['page']);
 include("lib/insert.php");
 							echo "</form>";

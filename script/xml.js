@@ -20,7 +20,7 @@ function getXMLHTTP() { //fuction to return the xml http object
     }
 
 	function getcode(project,k) {
-		var strURL="page2.php?projcode="+project;
+		var strURL="page2.php?projcode="+project+"&rownum="+k;
 		var req = getXMLHTTP();
 		if (req) {
 			req.onreadystatechange = function() {

@@ -1,83 +1,26 @@
 <div id="middle_right_top">
 		<h2>Enter Time Sheet</h2>
 		</div>
-
-<script>
-$(document).ready(function(){
-     $("#livesearch").hide();
-   $("#prj").keydown(function(){
-       var spr=$("#prj").val();
-       //alert(str);
- $("#livesearch").load("page3.php?QUAL="+spr, function(responseTxt, statusTxt, xhr){
-            if(statusTxt == "success")
-            $("#livesearch").show();
-            if(statusTxt == "error")
-                alert("Error: " + xhr.status + ": " + xhr.statusText);
-        });
-    }); 
-});
-    
-function setresult(str){
-    $("#prj").val(str);
-    $("#livesearch").hide();
-}
-$(document).ready(function(){
-     $("#livesearch").hide();
-$( "input" ).keydown(function( event ) {
-var target=event.target.;
-if(target.("prj"))
-  console.log( "clicked: " + event.target.id+$(this).val() );
-});
-</script>
-<script>
-/*$(document).ready(function(){
-     //$("#livesearch").hide();
-$( "input" ).keydown(function( event ) {
-var target=event.target.id;
-var spr=$(this).val();
-
-if($(this).next("div").hasClass("vakhri")==true)
-{
-var jkr=$(this).next("div");
-//alert(spr);
-$(this).next("div").load("page3.php?QUAL="+spr, function(responseTxt, statusTxt, xhr){
-            if(statusTxt == "success")
-            jkr.show();
-            if(statusTxt == "error")
-                alert("Error: " + xhr.status + ": " + xhr.statusText);
-        });
-}
-console.log( "clicked: " + event.target.nodeName+$(this).next("div").html() );
-});
-
-});
-   
-function setresult(str){
-$("li").click(function(event){
-var target=event.target.id;
-console.log("output is"+event.target.nodeName+$(this).parentsUntil("div").html()+$(this).parentsUntil("input").val()+str);
-//alert($(this).prevUntil("td").children("input").val());
-    //$(this).parentsUntil("div").hide();
-});
-} 
-*/  
-</script>
-<?php
-$field_show=array('status','week');
-$dts=setmydate('12-12-2016');
-$dte=setmydate('18-12-2016');
-$field_edit=array('week');
-$qual="week between $dts and $dte";
-//echo input('timesheet',$qual,1,$field_show);
-//echo input('timesheet',$qual,$field_edit,$field_show);
-?>
- 
-		<input id="btn" type="submit" onclick="checkme()" name="addrow1" value="Add Row">
+		<?php
+               
+                $jy=isset($_POST['dat'])?$_POST['dat']:"";
+                $dy=anyfriday($jy);
+                 echo "<td><input type=text name=dat id=dat value=\"".$dy."\" readonly=readonly class=ro size=\"10\">";
+		echo "<a href=\"javascript:NewCal('dat','yyyymmdd')\">
+		<img src=datetimepick/cal.gif width=15 height=15 border=0 alt=Pick a date></a></td>";
+               
+                echo '<input id="btn" type="submit" name="opensheet" value="opensheet">';
+		
+                if(isset($_POST['dat']))
+                {
+                //$dy=new DateTime(friday());
+                
+                $dy=new DateTime(anyfriday($_POST['dat']));
+                    ?>
+<input id="btn" type="submit"  name="addrow1" value="Add Row">
 		<input type="hidden" name="row1" size="2" value="1">
 
-		<table border="1" width="750"><?php $dy=new DateTime(friday());
-                ?>
-
+		<table border="1" width="750">
 		<th>PROJECT</th><th>TASK</th>
 		<th>SAT<br/><?php $j=$dy->modify("-6 days");echo $j->format('d-M');?></th>
 		<th>SUN<br/><?php $j=$dy->modify("+1 days");echo $j->format('d-M');?></th>
@@ -87,7 +30,12 @@ $qual="week between $dts and $dte";
 		<th>THU<br/><?php $j=$dy->modify("+1 days");echo $j->format('d-M');?></th>
 		<th>FRI<br/><?php $j=$dy->modify("+1 days");echo $j->format('d-M');?></th><th>TOTAL</th>
 		<tr>
+		
+               
+               
+                
 		<?php
+}
                 $j=0;
 		if(isset($_POST['addrow1']))
 		{
@@ -161,8 +109,8 @@ $qual="week between $dts and $dte";
 
 		if((is_numeric($val3)||empty($val3)) && (is_numeric($val4)||empty($val4)) && (is_numeric($val5)||empty($val5)) && (is_numeric($val6)||empty($val6)) && (is_numeric($val7)||empty($val7)) && (is_numeric($val8)||empty($val8)) && (is_numeric($val9)||empty($val9)))
 		{
-		$date=friday();
-		$ts = new DateTime(friday());
+		$date=anyfriday($jy);
+		$ts = new DateTime(anyfriday($jy));
 		$dint = $ts->format('U');
 
 		$sql = "INSERT INTO timetable (empid,empname,monday,tuesday,wednesday,thursday,friday,saturday,sunday,date,project,task,datevar,mgrid) VALUES ('$empval','$_SESSION[SESS_ename]', '$val3', '$val4', '$val5', '$val6', '$val7', '$val8', '$val9','$dint','$val10','$val11','$date','$_SESSION[SESS_mgrid]')";
@@ -230,7 +178,7 @@ $qual="week between $dts and $dte";
 /*Mail Part*/
 		if(isset($_POST['mail']))
 		{
-		$sdat = new DateTime(friday());
+		$sdat = new DateTime(anyfriday($jy));
 		$da=$sdat->format('U');
 		$sql2 = mysql_query("UPDATE timetable set tmp='1' where empid='$_SESSION[SESS_empid]' and date='$da'");
 
@@ -254,10 +202,11 @@ $qual="week between $dts and $dte";
 
 		}
 /*End of Mail Part*/
-
+                
+                if(isset($_POST['dat'])){
+		$sdat=new DAteTime(anyfriday($_POST['dat']));
+                $da=$sdat->format('U');
 		//$date=friday();
-		$sdat = new DateTime(friday());
-		$da=$sdat->format('U');
                 
 		$result = mysql_query("SELECT * FROM timetable where empid='$_SESSION[SESS_empid]' and date='$da'");
 		//$j=0;
@@ -345,6 +294,7 @@ $qual="week between $dts and $dte";
 		<input id="btn" type="submit" name="mail" value="Submit For The Week"><br/>
 
 		<?php
+                }
 		if(isset($sql))
 		{
 		echo "Time Sheet Saved";

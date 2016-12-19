@@ -241,7 +241,7 @@ if($mode==2)
 	}
 	if($_GET['page'] == 'payroll'){$a=$a."<button class=\"btn btn-warning\" id=\"btn_modify\" type=\"submit\" name=\"modify\" value=\"modify\">Cancel/Close</button>";}
 	elseif($_GET['page'] == 'master'){$a=$a."<button class=\"btn btn-warning\" id=\"btn_modify\" type=\"submit\" name=\"modify\" value=\"modify\">Modify</button>";}
-	elseif($_GET['page'] == 'accounts'){}
+	elseif($_GET['page'] !== $tbl){}
 	else{$a=$a."<button class=\"btn btn-warning\" id=\"btn_modify\" type=\"submit\" name=\"modify\" value=\"modify\">Modify</button>";}
 	return $a;
 }

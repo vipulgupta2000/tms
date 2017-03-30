@@ -28,6 +28,7 @@ function getXMLHTTP() { //fuction to return the xml http object
 					// only if "OK"
 					if (req.status == 200) {
 						document.getElementById('taskdiv'+k).innerHTML=req.responseText;
+                                                document.getElementById('sa_tb'+k).innerHTML=req.responseText;
 					} else {
 						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
 					}

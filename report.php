@@ -5,7 +5,7 @@
 		<table width="auto" border="1" cellpadding="2" cellspacing="2">
 		<tr>
 		<?php
-		if ($_SESSION['SESS_access']=='admin' || $_SESSION['SESS_access']=='manager' )
+		if ($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='manager' )
 		{
 		/*echo "<th align=left>Search By Employee ID:   </th>";*/
 		echo "<th align=left>Search By Project Name: </th>";
@@ -20,7 +20,7 @@
 
 		<tr>
 		<?php
-		if ($_SESSION['SESS_access']=='admin' || $_SESSION['SESS_access']=='manager' )
+		if ($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='manager' )
 		{
 		/*echo "<td><select name=\"empids\">";
 		echo "<option value=\"\">Select EmpID</option>";
@@ -146,7 +146,7 @@
 		?>
 
 		<?php
-		if ($_SESSION['SESS_access']=='admin' || $_SESSION['SESS_access']=='manager')
+		if ($_SESSION['SESS_perm']=='admin' || $_SESSION['SESS_perm']=='manager')
 		{
 		echo "<input id=\"btn\" name=\"search\" type=\"submit\"  value =\"Search Timesheet\" onclick=\"return validateForm2a()\">";
 		if(isset($_POST['search']) && empty($_POST['project']) && empty($_POST['empname']) && empty($_POST['charge'])
@@ -285,7 +285,7 @@
 		}
 
 
-		if ($_SESSION['SESS_access']=='user')
+		if ($_SESSION['SESS_perm']=='user')
 		{
 		echo "<input id=\"btn\" name=\"search\" type=\"submit\"  value =\"Search Timesheet\" onclick=\"return validateForm2b()\">";
 

@@ -7,8 +7,10 @@
 $tbl='timetable';
 //$tbl='appraisal_master';
 $field_edit=array('empid');
-$field_show=array('empid','empname','project');
-$qual="empid='1075'";
+$field_show=array('empid','empname','project','task');
+$dy=new DateTime(friday());
+$da=$dy->format('U');
+$qual="empid='$_SESSION[SESS_empid]' and date > ($da-(86400*21))";
 $link="home.php?page=";
 
 //echo "<input type=\"text\" name=\"filter\" placeholder=\"qual\" value=\"\" />";

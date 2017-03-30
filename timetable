@@ -65,10 +65,19 @@ console.log("output is"+event.target.nodeName+$(this).parentsUntil("div").html()
 <?php
 $field_show=array('status','week');
 $dts=setmydate('12-12-2016');
-$dte=setmydate('18-12-2016');
+$dte=setmydate('21-12-2016');
 $field_edit=array('week');
 $qual="week between $dts and $dte";
-//echo input('timesheet',$qual,1,$field_show);
+echo display('timesheet',$qual,1,$field_show);
+$arr=display_array('timesheet',$qual,1,array('id','status'));
+var_dump($arr);
+//$arr=array(1,2,3,45);
+foreach($arr as $val)
+{
+foreach($val as $v)
+{echo "Status is".$v;}
+//echo "$val[0]"; 
+}
 //echo input('timesheet',$qual,$field_edit,$field_show);
 ?>
  
@@ -88,6 +97,8 @@ $qual="week between $dts and $dte";
 		<th>FRI<br/><?php $j=$dy->modify("+1 days");echo $j->format('d-M');?></th><th>TOTAL</th>
 		<tr>
 		<?php
+                    
+                $var_tsid="";
                 $j=0;
 		if(isset($_POST['addrow1']))
 		{
@@ -317,7 +328,7 @@ $qual="week between $dts and $dte";
 		}
 
 		//echo "<td> <input type=text $read id=prj$j name=task$j  value=\"$row[task]\"      size=\"20\" ><div class=\"vakhri\" id=\"livesearch$j\" style=\"display: none;position: fixed\"></div></td>";
-		echo "<td> <input type=text $read name=sa_tb$j value=\"$row[saturday]\"  size=\"3\" >  </td>";
+		echo "<td><input type=text $read name=sa_tb$j value=\"$row[saturday]\"  size=\"3\" ></td>";
 		echo "<td> <input type=text $read name=su_tb$j value=\"$row[sunday]\"    size=\"3\" >  </td>";
 		echo "<td> <input type=text $read name=mo_tb$j value=\"$row[monday]\"    size=\"3\" >  </td>";
 		echo "<td> <input type=text $read name=tu_tb$j value=\"$row[tuesday]\"   size=\"3\" >  </td>";

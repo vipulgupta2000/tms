@@ -18,7 +18,8 @@ $field_show=array();
 //$field_show=explode(",",$str);
 //var_dump($field_show);
 //$qual=NULL;
-$qual_orig=" 1=1";
+$qual_orig=" 1=1";$dy=new DateTime(friday());
+$da=$dy->format('U');$qualdt=" empid='$_SESSION[SESS_empid]' and date>$da-86400*30";
 $qual=isset($_POST['qual'])?$_POST['qual']:$qual_orig;
 echo "<input type=\"hidden\" id=\"qual\" name=\"qual\" value=\"$qual\" />";
 
@@ -29,6 +30,7 @@ echo "<input type=\"hidden\" name=\"sel\" value=\"$sel\" />";
    
 if ($act=='click' ) {	
 	echo input_new($tbl,$sel,$field_edit,$field_show,2); 
+         echo display('timetable',$qualdt,1,$field_show);
         $act="";
 }
 elseif(isset($_POST['new'])){   
@@ -36,6 +38,7 @@ addrow1($tbl,$field_edit,$field_show,3);
 }
 elseif (isset($_POST['updates'])) {  
      echo input_new($tbl,$sel,$field_edit,$field_show,3); 
+    
 }
 elseif (isset($_POST['update'])) {    
      echo display($tbl,$qual,1,$field_show);
